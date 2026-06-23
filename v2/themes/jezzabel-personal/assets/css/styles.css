@@ -1,15 +1,26 @@
 @font-face {
     font-family: PokemonGB;
-    src: local("Pokemon GB"), url("./../../../../assets/fonts/Pokemon GB.ttf")
+    src: local("Pokemon GB"), url("./../../../../assets/fonts/Pokemon GB.ttf");
 }
 
 @font-face {
     font-family: RifficFree;
-    src: local("RifficFree"), url("../RifficFree-Bold.ttf")
+    src: local("RifficFree"), url("../RifficFree-Bold.ttf");
 }
 
-.pokes {
-    /* margin-top: 110px; */
+#party {
+    width: 630px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Changed from center to flex-start */
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* Explicitly target the connected state */
+#party .pokes.browser-connected {
+    display: block; /* Removed !important */
 }
 
 .no-connection {
@@ -31,26 +42,26 @@
     display: block !important;
 }
 
-.pokemon__list {
-    /* display: grid; */
-    width: 100%;
-    /* grid-template-columns: repeat(6, 128px); */
-    /* grid-template-rows: repeat(1, 115px); */
-    /* column-gap: 20px; */
-    display: block;
+#party .pokemon__list {
+    display: grid;
+    grid-template-columns: repeat(2, 305px);
+    column-gap: 20px; 
+    row-gap: 20px;    
+    width: auto;
+    align-content: start; 
 }
 
 .pokemon__list .pokemon {
     display: block;
     position: relative;
     text-align: center;
-    background-color: white;
-    width: 300px;
-    margin-top: 45px;
-    height: 95px;
-    background-color: rgba(0, 0, 0, 0.6);
-    transform: skewY(-5deg);
-    margin-left: 15px;
+    width: 100%; 
+    margin-top: 5px; 
+    height: 115px; 
+    /* Updated to the dark blue-grey from image_289b65.png */
+    background-color: rgba(19, 72, 125, 0.661); 
+    transform: none;
+    margin-left: 0px; 
 }
 
 .pokemon__list.flipped .pokemon {
@@ -64,32 +75,91 @@
     overflow: hidden;
 }
 
-.pokemon__level small {
-    font-size: 50%;
-}
+/* ==========================================================================
+   META ROW SWAPPED TO THE RIGHT SIDE
+   ========================================================================== */
 
-.pokemon__level {
+.pokemon__list .pokemon .pokemon__meta-row {
     position: absolute;
-    font-family: "pokemonGB";
-    color: #fff;
-    left: 35px;
-    top: 35px;
+    /* Adjust this to match the exact thickness of your green bar */
+    top: 6px; 
+    left: 0;
+    right: 0;
+    
+    /* Adjust height until it visually "meets" the bottom of the green bar */
+    height: 38px; 
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    z-index: 1; 
+    
+    background-color: rgba(35, 104, 173, 0.8);
+    border-radius: 0;
+    border: none;
 }
 
-.pokemon__list.flipped .pokemon__level {
-    right: 35px;
-    left: unset;
-}
-
-.pokemon__name {
-    position: absolute;
-    bottom: -10px;
-    padding: 5px;
-    width: 166px;
+/* Base font parameters for both elements */
+.pokemon__list .pokemon .pokemon__meta-row .pokemon__meta-level,
+.pokemon__list .pokemon .pokemon__meta-row .pokemon__meta-hp {
     font-family: "PokemonGB";
-    text-align: center;
-    left: -15px;
-    z-index: 10;
+    color: #ffffff; 
+    font-size: 17px;
+    text-shadow: 2px 2px 0px #000000; 
+    line-height: 1;
+    letter-spacing: normal; 
+}
+
+/* Squeezes the empty trailing whitespace gap after "Lv." */
+.pokemon__list .pokemon .pokemon__meta-row .pokemon__meta-level small {
+    margin-right: -4px; 
+    font-size: inherit;  
+}
+
+/* Squeezes the gap before the dot character */
+.pokemon__list .pokemon .pokemon__meta-row .pokemon__meta-level small .level__dot {
+    margin-left: -3px;  
+}
+
+/* Controls spacing directly around your custom slash separator */
+.pokemon__list .pokemon .pokemon__meta-row .hp__slash {
+    margin-left: 2px;  
+    margin-right: 2px; 
+}
+
+.pokemon__list .pokemon .pokemon__name {
+    position: absolute;
+    bottom: 18px; 
+    left: 8px;
+    
+    font-family: "PokemonGB", sans-serif;
+    color: #ffffff;
+    font-size: 20px; 
+    line-height: 1;
+    
+    /* THICKER SHADOW: 
+       The first layer (2px 2px) provides the crisp base.
+       The second layer (3px 3px) adds the extra thickness. */
+    text-shadow: 2px 2px 0px #000000, 
+                 3px 3px 0px #000000;
+    
+    /* Spacing: Keeping Western characters tight */
+    letter-spacing: -0.5px;
+    font-variant-east-asian: full-width;
+    
+    /* Bolding: Maintained for text weight */
+    -webkit-text-stroke: 1.2px #ffffff;
+    
+    image-rendering: pixelated;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    
+    z-index: 25;
+    text-align: left;
+    background: transparent;
+    padding: 0;
+    margin: 0;
 }
 
 .pokemon__list.flipped .pokemon__name {
@@ -101,13 +171,17 @@
     filter: grayscale(1);
 }
 
+/* ==========================================================================
+   POKÉMON IMAGE SHIFTED LEFT TOWARD CENTER
+   ========================================================================== */
 
 .pokemon__list .pokemon .pokemon__image {
-    /* overflow: hidden; */
-    height: 95px;
-    right: 0px;
+    height: 115px;    
+    width: 155px;     
+    right: 55px;      
     position: absolute;
-    width: 138px;
+    transform: scale(1.0); /* Reduced from 1.15 to make the sprite smaller */
+    z-index: 2;       
 }
 
 .pokemon__list .pokemon .pokemon__image .sprite.sprite--gif {
@@ -116,14 +190,13 @@
 
 .pokemon__list.flipped .pokemon .pokemon__image {
     right: unset;
-    left: 0px;
+    left: 55px;       /* Matches the offset for flipped layout slots */
 }
 
 .pokemon__list .pokemon .sprite {
     top: 50%;
     position: absolute;
     right: 10px;
-    /* height: 100%; */
 }
 
 .pokemon__list .pokemon.isPoisoned .pokemon__image .sprite {
@@ -151,9 +224,10 @@
 }
 
 .pokemon__list .pokemon .hp {
+    background-color: #222; /* Adds a thin dark track behind the bar */
     width: 100%;
     top: -4px;
-    height: 4px;
+    height: 8px; /* Increased from 4px to make the bar thicker */
     position: absolute;
 }
 
@@ -161,28 +235,42 @@
     transform: scaleX(-1);
 }
 
+/* LESS VIBRANT HP BAR (Softened Green to Lime) */
 .pokemon__list .pokemon .hp .hp__inner {
-    background: linear-gradient(to right, lime, #8bf500);
+    /* Slightly less neon, more readable green */
+    background: linear-gradient(to right, #1ac91a, #73e600);
     transition: width 2s;
     height: 100%;
 }
 
+/* Orange gradient for low health */
 .pokemon .hp .hp__inner.low {
-    background: linear-gradient(to right, #ffcc00, #f1f500);
+    /* Classic orange-to-deeper-orange for that "warning" look */
+    background: linear-gradient(to right, #ff9900, #e67e00);
 }
 
+/* Critical health - Slightly toned-down red */
 .pokemon .hp .hp__inner.critical {
-    background: linear-gradient(to right, #d20000, #f51700);
+    /* Muted but urgent red (less intense than pure #ff3333) */
+    background: #e62e2e; 
 }
 
 .pokemon__list .pokemon .exp {
     position: absolute;
     bottom: 0px;
-    width: calc(100% - 160px);
-    height: 2px;
-    background: transparent;
-    z-index: 5;
-    right: 0;
+    left: 0px;          
+    width: 100%;        
+    height: 8px;        /* Changed from 6px to perfectly match the HP bar height */
+    background: #222;   
+    z-index: 1;         
+}
+
+/* LIGHTER EXP BAR (Brighter Azure) */
+.pokemon .exp .exp__inner {
+    /* Brighter azure to provide better contrast against dark blue */
+    background-color: #40d4e8; 
+    height: 100%;
+    transition: width 2s;
 }
 
 .pokemon__list.flipped .pokemon .exp {
@@ -197,33 +285,12 @@
     bottom: 20px;
 }
 
-.pokemon .exp .exp__inner {
-    background-color: cyan;
-    height: 3px;
-    transition: width 2s;
-}
-
-.pokemon__list .pokemon .pokemon__details {
-    display: block;
-}
-
 .pokemon__list .pokemon .pokemon__details .details__name {
     font-weight: bold;
     color: #c0c0c0;
 }
 
-.pokemon__list .pokemon .pokemon__details .details__hp {
-    border: 1px solid #000000;
-    height: 5px;
-    width: 100%;
-}
-
-.pokemon__list .pokemon .pokemon__details .details__hp .hp__bar {
-    background-color: #ff0000;
-    height: 5px;
-}
-
-/* transitions stuffs */
+/* Transitions Stuffs */
 .switchSlow-move {
     transition: transform 2s;
 }
@@ -243,7 +310,6 @@
         filter: none;
     }
     50% {
-
         filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);
     }
     100% {
@@ -271,20 +337,16 @@
     10%, 90% {
         transform: translateY(-50%) scale(1.2) translate3d(-1px, 0, 0);
     }
-
     20%, 80% {
         transform: translateY(-50%) scale(1.2) translate3d(2px, 0, 0);
     }
-
     30%, 50%, 70% {
         transform: translateY(-50%) scale(1.2) translate3d(-4px, 0, 0);
     }
-
     40%, 60% {
         transform: translateY(-50%) scale(1.2) translate3d(4px, 0, 0);
     }
 }
-
 
 .sleeping {
     width: 200px;
@@ -292,9 +354,6 @@
     position: absolute;
     top: -50px;
     left: 94%;
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     z-index: 11;
 }
@@ -311,124 +370,19 @@
     left: 10px;
     font-size: 23pt;
     opacity: 0;
-    -moz-animation: sleep 9s infinite linear;
-    -webkit-animation: sleep 9s infinite linear;
     animation: sleep 9s infinite linear;
 }
 
 .sleeping span:nth-child(2n) {
-    -moz-animation-delay: 3s;
-    -webkit-animation-delay: 3s;
     animation-delay: 3s;
 }
 
 .sleeping span:nth-child(3n) {
-    -moz-animation-delay: 6s;
-    -webkit-animation-delay: 6s;
     animation-delay: 6s;
-}
-
-@-webkit-keyframes sleep {
-    0% {
-        -moz-transform: translate(0, 0) scale(0.3);
-        -ms-transform: translate(0, 0) scale(0.3);
-        -webkit-transform: translate(0, 0) scale(0.3);
-        transform: translate(0, 0) scale(0.3);
-        opacity: 0;
-    }
-    1% {
-        opacity: 0;
-    }
-    3% {
-        opacity: 1;
-    }
-    50% {
-        -moz-transform: translate(90%, -50%) scale(0.65);
-        -ms-transform: translate(90%, -50%) scale(0.65);
-        -webkit-transform: translate(90%, -50%) scale(0.65);
-        transform: translate(90%, -50%) scale(0.65);
-    }
-    75% {
-        opacity: 1;
-    }
-    100% {
-        -moz-transform: translate(180%, -100%) scale(1);
-        -ms-transform: translate(180%, -100%) scale(1);
-        -webkit-transform: translate(180%, -100%) scale(1);
-        transform: translate(180%, -100%) scale(1);
-        opacity: 0;
-    }
-}
-
-@-moz-keyframes sleep {
-    0% {
-        -moz-transform: translate(0, 0) scale(0.3);
-        -ms-transform: translate(0, 0) scale(0.3);
-        -webkit-transform: translate(0, 0) scale(0.3);
-        transform: translate(0, 0) scale(0.3);
-        opacity: 0;
-    }
-    1% {
-        opacity: 0;
-    }
-    3% {
-        opacity: 1;
-    }
-    50% {
-        -moz-transform: translate(90%, -50%) scale(0.65);
-        -ms-transform: translate(90%, -50%) scale(0.65);
-        -webkit-transform: translate(90%, -50%) scale(0.65);
-        transform: translate(90%, -50%) scale(0.65);
-    }
-    75% {
-        opacity: 1;
-    }
-    100% {
-        -moz-transform: translate(180%, -100%) scale(1);
-        -ms-transform: translate(180%, -100%) scale(1);
-        -webkit-transform: translate(180%, -100%) scale(1);
-        transform: translate(180%, -100%) scale(1);
-        opacity: 0;
-    }
-}
-
-@-ms-keyframes sleep {
-    0% {
-        -moz-transform: translate(0, 0) scale(0.3);
-        -ms-transform: translate(0, 0) scale(0.3);
-        -webkit-transform: translate(0, 0) scale(0.3);
-        transform: translate(0, 0) scale(0.3);
-        opacity: 0;
-    }
-    1% {
-        opacity: 0;
-    }
-    3% {
-        opacity: 1;
-    }
-    50% {
-        -moz-transform: translate(90%, -50%) scale(0.65);
-        -ms-transform: translate(90%, -50%) scale(0.65);
-        -webkit-transform: translate(90%, -50%) scale(0.65);
-        transform: translate(90%, -50%) scale(0.65);
-    }
-    75% {
-        opacity: 1;
-    }
-    100% {
-        -moz-transform: translate(180%, -100%) scale(1);
-        -ms-transform: translate(180%, -100%) scale(1);
-        -webkit-transform: translate(180%, -100%) scale(1);
-        transform: translate(180%, -100%) scale(1);
-        opacity: 0;
-    }
 }
 
 @keyframes sleep {
     0% {
-        -moz-transform: translate(0, 0) scale(0.3);
-        -ms-transform: translate(0, 0) scale(0.3);
-        -webkit-transform: translate(0, 0) scale(0.3);
         transform: translate(0, 0) scale(0.3);
         opacity: 0;
     }
@@ -439,18 +393,12 @@
         opacity: 1;
     }
     50% {
-        -moz-transform: translate(90%, -50%) scale(0.65);
-        -ms-transform: translate(90%, -50%) scale(0.65);
-        -webkit-transform: translate(90%, -50%) scale(0.65);
         transform: translate(90%, -50%) scale(0.65);
     }
     75% {
         opacity: 1;
     }
     100% {
-        -moz-transform: translate(180%, -100%) scale(1);
-        -ms-transform: translate(180%, -100%) scale(1);
-        -webkit-transform: translate(180%, -100%) scale(1);
         transform: translate(180%, -100%) scale(1);
         opacity: 0;
     }

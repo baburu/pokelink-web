@@ -1,6 +1,7 @@
 import { defineComponent } from 'vue';
 import { V2, typeColors, V2DataTypes } from 'pokelink';
 import trimmedSprite from '../../../../_shared/components/trimmedSprite.vue.js';
+
 export default defineComponent({
     template: `
       <div
@@ -19,10 +20,16 @@ export default defineComponent({
             <span>z</span>
           </div>
 
+<div class="pokemon__meta-row" v-if="!this.pokemon.isEgg">
+  <div class="pokemon__meta-hp">
+    300<span class="hp__slash">/</span>300
+  </div>
+  <div class="pokemon__meta-level">
+    <small>Lv<span class="level__dot">.</span></small>{{ pokemon.level }}
+  </div>
+</div>
+
           <div class="pokemon__row">
-            <div class="pokemon__level" v-if="!this.pokemon.isEgg">
-              <small>Lv.</small>{{ pokemon.level }}
-            </div>
             <trimmedSprite
                 v-if="isValid"
                 :key="ident"
@@ -125,23 +132,18 @@ export default defineComponent({
             }
             return `${this.pokemon.expPercentage}%`;
         },
-        nameStyle() {
-            let styles = {
-                'opacity': this.opacity
-            };
-            if (this.pokemon) {
-                let primaryType = this.pokemon.translations.english.types[0];
-                let secondaryType = primaryType;
-                if (this.pokemon.translations.english.types.length < 1) {
-                    secondaryType = this.pokemon.translations.english.types[1];
-                }
-                styles = {
-                    ...styles,
-                    'background-image': 'linear-gradient(180deg, ' + typeColors[primaryType] + ', ' + typeColors[secondaryType] + ')'
-                };
-            }
-            return styles;
-        }
+nameStyle() {
+    let styles = {
+        'opacity': this.opacity
+    };
+    /* // All this code is now ignored:
+    if (this.pokemon) {
+        ...
+        styles = { ... };
+    }
+    */
+    return styles;
+}
     },
     watch: {
         pokemon(newVal, oldVal) {
@@ -159,4 +161,3 @@ export default defineComponent({
         }
     }
 });
-//# sourceMappingURL=pokemon.vue.js.map
