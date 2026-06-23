@@ -1,3 +1,8 @@
+# Fork Info
+
+I have no clue about what I'm doing, I'm just trying to edit some Theme to fit my needs.
+
+
 # PokeLink Web
 
 This repo contains the different themes available as web sources for PokeLink
