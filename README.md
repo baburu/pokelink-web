@@ -1,6 +1,6 @@
 # Fork Info
 
-I have no clue about what I'm doing, I'm just trying to edit some Theme to fit my needs.
+I have no clue what I'm doing; I'm just trying to edit some themes to better fit my preferences.
 
 
 # PokeLink Web
