@@ -20,14 +20,14 @@ export default defineComponent({
             <span>z</span>
           </div>
 
-<div class="pokemon__meta-row" v-if="!this.pokemon.isEgg">
-  <div class="pokemon__meta-hp">
-    300<span class="hp__slash">/</span>300
-  </div>
-  <div class="pokemon__meta-level">
-    <small>Lv<span class="level__dot">.</span></small>{{ pokemon.level }}
-  </div>
-</div>
+            <div class="pokemon__meta-row" v-if="!this.pokemon.isEgg">
+                <div class="pokemon__meta-hp">
+                {{ pokemon.hp.current }}<span class="hp__slash">/</span>{{ pokemon.hp.max }}
+                </div>
+            <div class="pokemon__meta-level">
+                <small>Lv<span class="level__dot">.</span></small>{{ pokemon.level }}
+            </div>
+            </div>
 
           <div class="pokemon__row">
             <trimmedSprite
