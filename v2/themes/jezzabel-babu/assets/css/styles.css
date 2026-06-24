@@ -13,14 +13,16 @@
     height: 500px;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Changed from center to flex-start */
+    align-items: flex-start;
+    /* Changed from center to flex-start */
     box-sizing: border-box;
     margin: 0 auto;
 }
 
 /* Explicitly target the connected state */
 #party .pokes.browser-connected {
-    display: block; /* Removed !important */
+    display: block;
+    /* Removed !important */
 }
 
 .no-connection {
@@ -45,23 +47,23 @@
 #party .pokemon__list {
     display: grid;
     grid-template-columns: repeat(2, 305px);
-    column-gap: 20px; 
-    row-gap: 20px;    
+    column-gap: 20px;
+    row-gap: 20px;
     width: auto;
-    align-content: start; 
+    align-content: start;
 }
 
 .pokemon__list .pokemon {
     display: block;
     position: relative;
     text-align: center;
-    width: 100%; 
-    margin-top: 5px; 
-    height: 115px; 
+    width: 100%;
+    margin-top: 5px;
+    height: 115px;
     /* Updated to the dark blue-grey from image_289b65.png */
-    background-color: rgba(19, 72, 125, 0.661); 
+    background-color: rgba(19, 72, 125, 0.661);
     transform: none;
-    margin-left: 0px; 
+    margin-left: 0px;
 }
 
 .pokemon__list.flipped .pokemon {
@@ -82,19 +84,19 @@
 .pokemon__list .pokemon .pokemon__meta-row {
     position: absolute;
     /* Adjust this to match the exact thickness of your green bar */
-    top: 6px; 
+    top: 6px;
     left: 0;
     right: 0;
-    
+
     /* Adjust height until it visually "meets" the bottom of the green bar */
-    height: 38px; 
-    
+    height: 38px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
-    z-index: 1; 
-    
+    z-index: 1;
+
     background-color: rgba(35, 104, 173, 0.8);
     border-radius: 0;
     border: none;
@@ -104,57 +106,57 @@
 .pokemon__list .pokemon .pokemon__meta-row .pokemon__meta-level,
 .pokemon__list .pokemon .pokemon__meta-row .pokemon__meta-hp {
     font-family: "PokemonGB";
-    color: #ffffff; 
+    color: #ffffff;
     font-size: 17px;
-    text-shadow: 2px 2px 0px #000000; 
+    text-shadow: 2px 2px 0px #000000;
     line-height: 1;
-    letter-spacing: normal; 
+    letter-spacing: normal;
 }
 
 /* Squeezes the empty trailing whitespace gap after "Lv." */
 .pokemon__list .pokemon .pokemon__meta-row .pokemon__meta-level small {
-    margin-right: -4px; 
-    font-size: inherit;  
+    margin-right: -4px;
+    font-size: inherit;
 }
 
 /* Squeezes the gap before the dot character */
 .pokemon__list .pokemon .pokemon__meta-row .pokemon__meta-level small .level__dot {
-    margin-left: -3px;  
+    margin-left: -3px;
 }
 
 /* Controls spacing directly around your custom slash separator */
 .pokemon__list .pokemon .pokemon__meta-row .hp__slash {
-    margin-left: 2px;  
-    margin-right: 2px; 
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 .pokemon__list .pokemon .pokemon__name {
     position: absolute;
-    bottom: 18px; 
+    bottom: 18px;
     left: 8px;
-    
+
     font-family: "PokemonGB", sans-serif;
     color: #ffffff;
-    font-size: 20px; 
+    font-size: 20px;
     line-height: 1;
-    
+
     /* THICKER SHADOW: 
        The first layer (2px 2px) provides the crisp base.
        The second layer (3px 3px) adds the extra thickness. */
-    text-shadow: 2px 2px 0px #000000, 
-                 3px 3px 0px #000000;
-    
+    text-shadow: 2px 2px 0px #000000,
+        3px 3px 0px #000000;
+
     /* Spacing: Keeping Western characters tight */
     letter-spacing: -0.5px;
     font-variant-east-asian: full-width;
-    
+
     /* Bolding: Maintained for text weight */
     -webkit-text-stroke: 1.2px #ffffff;
-    
+
     image-rendering: pixelated;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: grayscale;
-    
+
     z-index: 25;
     text-align: left;
     background: transparent;
@@ -176,12 +178,13 @@
    ========================================================================== */
 
 .pokemon__list .pokemon .pokemon__image {
-    height: 115px;    
-    width: 155px;     
-    right: 55px;      
+    height: 115px;
+    width: 155px;
+    right: 55px;
     position: absolute;
-    transform: scale(1.0); /* Reduced from 1.15 to make the sprite smaller */
-    z-index: 2;       
+    transform: scale(1.0);
+    /* Reduced from 1.15 to make the sprite smaller */
+    z-index: 2;
 }
 
 .pokemon__list .pokemon .pokemon__image .sprite.sprite--gif {
@@ -190,7 +193,8 @@
 
 .pokemon__list.flipped .pokemon .pokemon__image {
     right: unset;
-    left: 55px;       /* Matches the offset for flipped layout slots */
+    left: 55px;
+    /* Matches the offset for flipped layout slots */
 }
 
 .pokemon__list .pokemon .sprite {
@@ -224,10 +228,12 @@
 }
 
 .pokemon__list .pokemon .hp {
-    background-color: #222; /* Adds a thin dark track behind the bar */
+    background-color: #222;
+    /* Adds a thin dark track behind the bar */
     width: 100%;
     top: -4px;
-    height: 8px; /* Increased from 4px to make the bar thicker */
+    height: 8px;
+    /* Increased from 4px to make the bar thicker */
     position: absolute;
 }
 
@@ -252,23 +258,24 @@
 /* Critical health - Slightly toned-down red */
 .pokemon .hp .hp__inner.critical {
     /* Muted but urgent red (less intense than pure #ff3333) */
-    background: #e62e2e; 
+    background: #e62e2e;
 }
 
 .pokemon__list .pokemon .exp {
     position: absolute;
     bottom: 0px;
-    left: 0px;          
-    width: 100%;        
-    height: 8px;        /* Changed from 6px to perfectly match the HP bar height */
-    background: #222;   
-    z-index: 1;         
+    left: 0px;
+    width: 100%;
+    height: 8px;
+    /* Changed from 6px to perfectly match the HP bar height */
+    background: #222;
+    z-index: 1;
 }
 
 /* LIGHTER EXP BAR (Brighter Azure) */
 .pokemon .exp .exp__inner {
     /* Brighter azure to provide better contrast against dark blue */
-    background-color: #40d4e8; 
+    background-color: #40d4e8;
     height: 100%;
     transition: width 2s;
 }
@@ -309,9 +316,11 @@
         -webkit-filter: none;
         filter: none;
     }
+
     50% {
         filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8);
     }
+
     100% {
         -webkit-filter: none;
         filter: none;
@@ -323,10 +332,12 @@
         -webkit-filter: none;
         filter: none;
     }
+
     50% {
         -webkit-filter: invert(40%) grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-106deg) saturate(400%) contrast(2);
         filter: grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-106deg) saturate(600%) contrast(0.8);
     }
+
     100% {
         -webkit-filter: none;
         filter: none;
@@ -334,16 +345,25 @@
 }
 
 @keyframes shake {
-    10%, 90% {
+
+    10%,
+    90% {
         transform: translateY(-50%) scale(1.2) translate3d(-1px, 0, 0);
     }
-    20%, 80% {
+
+    20%,
+    80% {
         transform: translateY(-50%) scale(1.2) translate3d(2px, 0, 0);
     }
-    30%, 50%, 70% {
+
+    30%,
+    50%,
+    70% {
         transform: translateY(-50%) scale(1.2) translate3d(-4px, 0, 0);
     }
-    40%, 60% {
+
+    40%,
+    60% {
         transform: translateY(-50%) scale(1.2) translate3d(4px, 0, 0);
     }
 }
@@ -386,18 +406,23 @@
         transform: translate(0, 0) scale(0.3);
         opacity: 0;
     }
+
     1% {
         opacity: 0;
     }
+
     3% {
         opacity: 1;
     }
+
     50% {
         transform: translate(90%, -50%) scale(0.65);
     }
+
     75% {
         opacity: 1;
     }
+
     100% {
         transform: translate(180%, -100%) scale(1);
         opacity: 0;
